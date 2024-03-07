@@ -8,6 +8,6 @@ public class msrtc {
 
     @GetMapping("/msrtc")
     public String getData(){
-        return "Please book your flight at 10% discount";
+        return "this is msrtc page";
     }
 }
