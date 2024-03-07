@@ -1,7 +1,0 @@
-this is my text file 
-
-1
-  12
-  2
-  2
-  3
