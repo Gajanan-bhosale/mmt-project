@@ -33,7 +33,7 @@ pipeline {
         stage('Building & Tag Docker Image') {
             steps {
                 echo 'Starting Building Docker Image'
-                sh 'docker build -t satyam88/mmt-project .'
+                sh 'docker build -t kubegajanan/mmt-project .'
                 sh 'docker build -t mmt-project .'
                 echo 'Completed  Building Docker Image'
             }
