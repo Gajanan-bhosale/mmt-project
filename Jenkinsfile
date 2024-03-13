@@ -76,6 +76,19 @@ pipeline {
                    }
               }
         }
+        stage('Upload the docker Image to Nexus') {
+              steps {
+                    script {
+                         withCredentials([usernamePassword(credentialsId: 'nexuscred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+                         sh 'docker login http://3.110.94.24:8085/repository/mmt-project/ -u admin -p ${PASSWORD}'
+                         echo "Push Docker Image to Nexus : In Progress"
+                         sh 'docker tag mmt-project 3.110.94.24:8085/mmt-project:latest'
+                         sh 'docker push 3.110.94.24:8085/mmt-project'
+                         echo "Push Docker Image to Nexus : Completed"
+                         }
+                    }
+              }
+        }
 
     }
 }
