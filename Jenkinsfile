@@ -23,6 +23,20 @@ pipeline {
                 echo 'unit test case check completed'
             }
         }
+        stage('Sonarqube Code Quality Analiese'){
+            environment {
+                scannerHome = tool 'qube'
+            }
+            steps {
+                withSonarQubeEnv('Sonar-server'){
+                    sh '${scannerHome}/bin/sonar-scanner'
+                    sh 'mvn sonar:sonar'
+                }
+                timeout(time: 10, unit: 'MINUTES'){
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
         stage('code package') {
             steps {
                 echo 'Creating a war Artifact'
@@ -80,10 +94,10 @@ pipeline {
               steps {
                     script {
                          withCredentials([usernamePassword(credentialsId: 'nexuscred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
-                         sh 'docker login http://13.127.245.50:8085/repository/mmt-project/ -u admin -p ${PASSWORD}'
+                         sh 'docker login http://13.233.45.196:8085/repository/mmt-project/ -u admin -p ${PASSWORD}'
                          echo "Push Docker Image to Nexus : In Progress"
-                         sh 'docker tag mmt-project 13.127.245.50:8085/mmt-project:latest'
-                         sh 'docker push 13.127.245.50:8085/mmt-project'
+                         sh 'docker tag mmt-project 13.233.45.196:8085/mmt-project:latest'
+                         sh 'docker push 13.233.45.196:8085/mmt-project'
                          echo "Push Docker Image to Nexus : Completed"
                          }
                     }
