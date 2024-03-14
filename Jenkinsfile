@@ -25,10 +25,10 @@ pipeline {
         }
         stage('Sonarqube Code Quality Analiese'){
             environment {
-                scannerHome = tool 'qube'
+                scannerHome = tool 'SonarQubeScanner'
             }
             steps {
-                withSonarQubeEnv('Sonar-server'){
+                withSonarQubeEnv('sonar-server'){
                     sh '${scannerHome}/bin/sonar-scanner'
                     sh 'mvn sonar:sonar'
                 }
