@@ -98,7 +98,7 @@ pipeline {
                          echo "Push Docker Image to Nexus : In Progress"
                          sh 'docker tag mmt-project 3.110.220.78:8085/mmt-project:dev-mmt-project-v.1.${BUILD_NUMBER}'
                          sh 'docker push 3.110.220.78:8085/mmt-project:dev-mmt-project-v.1.${BUILD_NUMBER}'
-                         echo "Push Docker Image to Nexus : Completed"
+                         echo 'Push Docker Image to Nexus : Completed'
                          }
                     }
               }
