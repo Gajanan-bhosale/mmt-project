@@ -94,10 +94,10 @@ pipeline {
               steps {
                     script {
                          withCredentials([usernamePassword(credentialsId: 'nexuscred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
-                         sh 'docker login http://3.110.220.78:8085/repository/mmt-project/ -u admin -p ${PASSWORD}'
+                         sh 'docker login http://13.235.238.24:8085/repository/mmt-project/ -u admin -p ${PASSWORD}'
                          echo "Push Docker Image to Nexus : In Progress"
-                         sh 'docker tag mmt-project 3.110.220.78:8085/mmt-project:dev-mmt-project-v.1.${BUILD_NUMBER}'
-                         sh 'docker push 3.110.220.78:8085/mmt-project:dev-mmt-project-v.1.${BUILD_NUMBER}'
+                         sh 'docker tag mmt-project 13.235.238.24:8085/mmt-project:dev-mmt-project-v.1.${BUILD_NUMBER}'
+                         sh 'docker push 13.235.238.24:8085/mmt-project:dev-mmt-project-v.1.${BUILD_NUMBER}'
                          echo 'Push Docker Image to Nexus : Completed'
                          }
                     }
